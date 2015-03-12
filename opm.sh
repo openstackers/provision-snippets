@@ -1,4 +1,4 @@
-echo "Snippet - install Openstack Puppet Modules" 
+echo "Snippet - install Openstack Puppet Modules"
 opm=$1
 branch=$2
 
@@ -17,9 +17,9 @@ case $opm in
     ;;
   *)
     echo 'OPM from GIT'
-    mkdir /usr/share/openstack-puppet-modules
-    git clone $opm '/usr/share/openstack-puppet-modules/modules'
-    cd  '/usr/share/openstack-puppet-modules/modules'
+    [[ ! -d /usr/share/openstack-puppet ]] && mkdir /usr/share/openstack-puppet
+    git clone $opm '/usr/share/openstack-puppet/modules'
+    cd  '/usr/share/openstack-puppet/modules'
     git checkout $branch
     ;;
 esac
