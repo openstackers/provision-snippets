@@ -1,7 +1,6 @@
 echo "Snippet - keystonerc V2"
 password=$1
-token=$2
-public=$3
+public=$2
 version='/v2.0'
 
 cat > /root/keystonerc <<EOD
