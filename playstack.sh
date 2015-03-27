@@ -3,6 +3,7 @@ branch=$1
 public=$2
 internal=$3
 admin=$4
+run=$5
 
 gem install configatron --no-ri --no-rdoc
 
@@ -21,6 +22,6 @@ cd playstack
 
 augtool set /files/etc/puppet/puppet.conf/main/hiera_config /root/playstack/hiera/hiera.yaml
 
-puppet apply manifests
+[[ $run == 'true' ]] && puppet apply manifests
 
 # cat /etc/keystone/keystone.conf | grep -v "^#" | grep -v "^$"
