@@ -3,22 +3,26 @@ module=$1
 git=$2
 branch=$3
 target=$4
+
+echo "Snippet - Cloning module $module from $git for branch $branch into $target"
+
+git --version >& /dev/null
+[[ $? -eq 127 ]] && yum -y install git
+
 if [[ $target == '' ]]
 then
   target=/etc/puppet/modules/
 fi
 
-echo "Snippet - Cloning module $module from $git for branch $branch into $target"
-yum -y install git
+[[ -d ${target} ]] && mkdir -p $target
 
-if [[ -d $target ]]
+if [[ -d ${target}/${module} ]]
 then
-  rm -rf $target
+  rm -rf ${target}/${module}
 fi
-mkdir -p $target
 
 cd $target
-git clone $git $target/$module
+git clone $git $module
 
 cd $module
 git checkout $branch

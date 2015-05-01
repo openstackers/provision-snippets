@@ -15,13 +15,17 @@ then
 fi
 
 cd $HOME
-mkdir playstack
+[[ ! -d  playstack ]] && mkdir playstack
 cd playstack
 
-/usr/local/playstack/playstack -dtesting -a$admin -i$internal -p$public
+echo "/usr/local/playstack/playstack -dtesting -a$admin -i$internal -p$public"
+/usr/local/playstack/playstack -dtesting -a$admin -i$internal -p$public --answer=/vagrant/answer.yaml
 
 augtool set /files/etc/puppet/puppet.conf/main/hiera_config /root/playstack/hiera/hiera.yaml
 
-[[ $run == 'true' ]] && puppet apply manifests
+if [[ $run == 'true' ]]
+then
+  puppet apply manifests
+fi
 
 # cat /etc/keystone/keystone.conf | grep -v "^#" | grep -v "^$"

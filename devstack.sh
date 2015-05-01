@@ -12,15 +12,15 @@ cat > /home/stack/devstack/local.conf <<EOD
 [[local|localrc]]
 FLOATING_RANGE=192.168.254.224/27
 FIXED_RANGE=${fixed_range}
-FIXED_NETWORK_SIZE=256
+FIXED_NETWORK_SIZE=10
 FLAT_INTERFACE=eth2
-ADMIN_PASSWORD=easy
-MYSQL_PASSWORD=easy
-RABBIT_PASSWORD=easy
-SERVICE_PASSWORD=easy
-SERVICE_TOKEN=xyzpdqlazydog
+ADMIN_PASSWORD=testing
+MYSQL_PASSWORD=testing
+RABBIT_PASSWORD=testing
+SERVICE_PASSWORD=testing
+SERVICE_TOKEN=testing
 EOD
 
-chown stack.stack /home/stack/local.conf
+chown stack.stack /home/stack/devstack/local.conf
 
 sudo -iu stack -- sh -c "cd devstack; ./stack.sh"

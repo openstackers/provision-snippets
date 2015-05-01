@@ -29,7 +29,10 @@ case $opm in
       mkdir /usr/share/openstack-puppet
       git_get
     else
-      [[ $refresh -eq 1 ]] && git_get
+      if [[ $refresh -eq 1 ]]
+      then
+        git_get
+      fi
     fi
     ;;
 esac
