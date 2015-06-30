@@ -55,31 +55,7 @@ case $openstack in
           ;;
         7)
           echo 'Adding RDO Kilo'
-          #rpm -ivh https://repos.fedorapeople.org/repos/openstack/openstack-kilo/rdo-release-kilo-0.noarch.rpm
-          cat > /etc/yum.repos.d/rdo7-epel7.repo <<EOT
-[openstack-juno]
-name=OpenStack Juno Repository
-baseurl=http://repos.fedorapeople.org/repos/openstack/openstack-juno/epel-7/
-enabled=1
-skip_if_unavailable=0
-gpgcheck=0
-
-[openstack-kilo-trunk]
-name=OpenStack Kilo Repository
-#baseurl=https://repos.fedorapeople.org/repos/openstack/openstack-trunk/epel-7/kilo-3/
-baseurl=http://trunk.rdoproject.org/centos70/d6/82/d6824ae14830362af1412b730256c84a1f7d3067_cd20c1a3/
-enabled=1
-skip_if_unavailable=0
-gpgcheck=0
-
-[openstack-kilo]
-name=Temporary OpenStack Kilo new deps
-baseurl=http://repos.fedorapeople.org/repos/openstack/openstack-kilo/epel-7/
-enabled=1
-skip_if_unavailable=0
-gpgcheck=0
-EOT
-
+          rpm -ivh https://repos.fedorapeople.org/repos/openstack/openstack-kilo/rdo-release-kilo-1.noarch.rpm
           ;;
         *)
           echo 'Error: no RDO release available'

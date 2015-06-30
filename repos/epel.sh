@@ -15,6 +15,7 @@ then
 
       *7)
         echo 'Adding EPEL7'
+        #yum install epel-release
         rpm -ivh http://dl.fedoraproject.org/pub/epel/7/x86_64/e/epel-release-7-5.noarch.rpm
         ;;
     esac

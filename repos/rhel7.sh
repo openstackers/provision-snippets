@@ -2,7 +2,8 @@
 cat > /etc/yum.repos.d/rhel-7-server.repo <<EOF
 [rhel-7-server]
 name=Red Hat Enterprise Linux  - x86_64 - Server
-baseurl=http://download.bne.redhat.com/released/RHEL-7/7.1/Server/x86_64/os/
+#baseurl=http://download.bne.redhat.com/pub/rhel/released/RHEL-7/7.1/Server/x86_64/os/
+baseurl=http://download.eng.bos.redhat.com/released/RHEL-7/7.1/Server/x86_64/os/Packages/
 enabled=1
 gpgcheck=0
 gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-redhat-release
