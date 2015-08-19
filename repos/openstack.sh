@@ -15,12 +15,12 @@ case $openstack in
       case $platform in
         rhel*|centos*)
           case $platform in
-          *6)
+          *6|*6-dev)
             echo 'Adding EPEL6'
             rpm -ivh http://dl.fedoraproject.org/pub/epel/6/x86_64/epel-release-6-8.noarch.rpm
             ;;
 
-          *7)
+          *7|*7-dev)
             echo 'Adding EPEL7'
             rpm -ivh http://dl.fedoraproject.org/pub/epel/7/x86_64/e/epel-release-7-5.noarch.rpm
             ;;
@@ -29,7 +29,7 @@ case $openstack in
     fi
 
     case $platform in
-      rhel*)
+      rhel*|rhel*-dev)
         echo 'Enabling RHEL Optional'
         yum-config-manager --enable rhel-server-optional
         echo 'Enabling RHEL Extras'
