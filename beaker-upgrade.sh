@@ -7,10 +7,7 @@ REF=$2     # 95/184195/15
 OS_TYPE=$3 # centos7
 STABLE=$4  # stable/kilo
 
-mkdir old_branch new_branch
-
-# prepare gems
-pushd old_branch
+# test stable branch
 git clone https://github.com/openstack/puppet-$MODULE
 cd puppet-$MODULE
 git checkout $STABLE
@@ -24,8 +21,15 @@ export BEAKER_set=nodepool-$OS_TYPE
 export BEAKER_debug=yes
 bundle exec rspec spec/acceptance
 
-# upgrade and test the current branch
-pushd +1
+# prepare for upgrade
+echo "=========> UPGRADE <=========="
+cd
+mkdir stable-branch
+mv puppet-$MODULE stable-branch
+sudo rm -rf openstack/puppet-openstack-integration
+
+# test current branch
+mkdir new_branch
 cd new_branch
 git clone https://github.com/openstack/puppet-$MODULE
 cd puppet-$MODULE

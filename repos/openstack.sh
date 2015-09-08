@@ -57,6 +57,19 @@ case $openstack in
           echo 'Adding RDO Kilo'
           rpm -ivh https://repos.fedorapeople.org/repos/openstack/openstack-kilo/rdo-release-kilo-1.noarch.rpm
           ;;
+        8)
+          echo 'Adding RDO Liberty'
+          rpm -ivh https://repos.fedorapeople.org/repos/openstack/openstack-kilo/rdo-release-kilo-1.noarch.rpm
+          echo 'Addind RDO delorean trunk'
+          cat > /etc/yum.repos.d/delorean.repo <<EOF
+[openstack-rdo-trunk]
+name=OpenStack trunk (delorean) Repository
+baseurl= http://trunk.rdoproject.org/centos7/current/
+skip_if_unavailable=0
+enabled=1
+gpgcheck=0
+EOF
+          ;;
         *)
           echo 'Error: no RDO release available'
           exit 1
