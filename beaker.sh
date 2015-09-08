@@ -11,11 +11,9 @@ git fetch https://review.openstack.org/openstack/puppet-$MODULE refs/changes/$RE
 sudo gem install bundler --no-rdoc --no-ri --verbose
 mkdir .bundled_gems
 
-#export BEAKER_set=nodepool-$OS_TYPE
-export BEAKER_set=nodepool-centos7
+export BEAKER_set=nodepool-$OS_TYPE
 export GEM_HOME=`pwd`/.bundled_gems
 export BEAKER_debug=yes
 
 bundle install
-
-# bundle exec rspec spec/acceptance
+bundle exec rspec spec/acceptance
