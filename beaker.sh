@@ -12,8 +12,8 @@ sudo gem install bundler --no-rdoc --no-ri --verbose
 mkdir .bundled_gems
 
 export BEAKER_set=nodepool-$OS_TYPE
-export GEM_HOME=`pwd`/.bundled_gems
 export BEAKER_debug=yes
+export GEM_HOME=`pwd`/.bundled_gems
 
 bundle install
 bundle exec rspec spec/acceptance

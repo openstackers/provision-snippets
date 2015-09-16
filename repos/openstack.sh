@@ -58,13 +58,37 @@ case $openstack in
           rpm -ivh https://repos.fedorapeople.org/repos/openstack/openstack-kilo/rdo-release-kilo-1.noarch.rpm
           ;;
         8)
+          echo 'Adding RDO Liberty testing and Delorean trunk repos'
+          cat > /etc/yum.repos.d/delorean.repo <<EOF
+[openstack-common-testing]
+name=OpenStack Common Testing Repository
+baseurl=http://cbs.centos.org/repos/cloud7-openstack-common-testing/x86_64/os/
+skip_if_unavailable=0
+enabled=1
+gpgcheck=0
+
+[openstack-liberty-testing]
+name=OpenStack Libeerty testing Repository
+baseurl=http://cbs.centos.org/repos/cloud7-openstack-liberty-testing/x86_64/os/
+skip_if_unavailable=0
+enabled=1
+gpgcheck=0
+
+[openstack-liberty-trunk]
+name=OpenStack Delorean Liberty trunk Repository
+baseurl=http://trunk.rdoproject.org/centos7-liberty/current/
+skip_if_unavailable=0
+enabled=1
+gpgcheck=0
+EOF
+        old-8)
           echo 'Adding RDO Liberty'
           rpm -ivh https://repos.fedorapeople.org/repos/openstack/openstack-kilo/rdo-release-kilo-1.noarch.rpm
           echo 'Addind RDO delorean trunk'
           cat > /etc/yum.repos.d/delorean.repo <<EOF
 [openstack-rdo-trunk]
 name=OpenStack trunk (delorean) Repository
-baseurl= http://trunk.rdoproject.org/centos7/current/
+baseurl=http://trunk.rdoproject.org/centos7/current/
 skip_if_unavailable=0
 enabled=1
 gpgcheck=0
