@@ -81,7 +81,9 @@ skip_if_unavailable=0
 enabled=1
 gpgcheck=0
 EOF
-        old-8)
+          ;;
+        old8)
+        # OLD RDO LIBERTY
           echo 'Adding RDO Liberty'
           rpm -ivh https://repos.fedorapeople.org/repos/openstack/openstack-kilo/rdo-release-kilo-1.noarch.rpm
           echo 'Addind RDO delorean trunk'
@@ -104,8 +106,7 @@ EOF
 
   RHOS|rhos)
     echo "Adding RHOS $openstackversion"
-    rhos-release -v
-    if [[ $? -eq 127 ]]
+    if [[ ! -x '/usr/bin/rhos-release' ]]
     then
       for i in `ls /etc/yum.repos.d/ | grep -v redhat.repo`
       do
@@ -116,7 +117,7 @@ EOF
       options=""
       [[ $flea == "true" ]] && options="-f -d"
       rhos-release $options $openstackversion
-      rhos-release $options ${openstackversion}-installer
+      # rhos-release $options ${openstackversion}-installer
     fi
     ;;
   *)
