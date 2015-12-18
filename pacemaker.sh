@@ -5,11 +5,13 @@ cluster_members=$3
 cluster_options=$4
 passwd="CHANGEME"
 
+iptables -I INPUT -p udp --dport 5404 -j ACCEPT
 iptables -I INPUT -p udp --dport 5405 -j ACCEPT
 iptables -I INPUT -p tcp --dport 2224 -j ACCEPT
 iptables -I INPUT -p tcp --dport 3121 -j ACCEPT
 service iptables save
 
+ip6tables -I INPUT -p udp --dport 5404 -j ACCEPT
 ip6tables -I INPUT -p udp --dport 5405 -j ACCEPT
 ip6tables -I INPUT -p tcp --dport 2224 -j ACCEPT
 ip6tables -I INPUT -p tcp --dport 3121 -j ACCEPT
